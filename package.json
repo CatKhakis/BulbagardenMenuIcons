@@ -1,0 +1,19 @@
+{
+  "name": "sprite-convert",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "debug": "DEBUG=1 node index.js"
+  },
+  "dependencies": {
+    "file-type": "^21.3.0",
+    "node-fetch": "^3.3.2",
+    "nodemw": "^0.25.0"
+  }
+}
