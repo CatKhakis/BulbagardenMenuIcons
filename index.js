@@ -13,7 +13,7 @@ const modes = {
         'listStart': 1,
     },
     'gen-v-animated-icons': {
-        'path': 'generation-v/animated-icons/',
+        'path': 'generation-v/icons/animated/',
         'searchCategory': 'Animated_menu_sprites',
         'indexStart': 3,
         'indexStop': 6,
@@ -22,7 +22,7 @@ const modes = {
 };
 
 // --- change variable here to set which mode the script is run with --- //
-const setMode = 'gen-v-animated-icons';
+const setMode = 'gen-v-icons';
 
 
 // Set up MediaWiki API
@@ -79,22 +79,23 @@ async function downloadImage(url) {
     fileName = fileName[fileName.length - 1];
     const index = fileName.substring(modes[setMode].indexStart, fileName.length - modes[setMode].indexStop);
 
-    let path = `${modes[setMode].path}${index}.png`;
-
     //Filename is determined by the lookup table if there is an entry for the given dex number.
     if (lookup[index]) {
 
         //Lookup derived filename requires a custom path
+        //console.log(`${modes[setMode].path}${lookup[index]}.png`)
         fs.createWriteStream(`${modes[setMode].path}${lookup[index]}.png`).write(buffer);
 
         //Some sprites are duplicated to have the variant text and standard as a fallback
         //e.g. 521 -> 521 & 521-male
         if (index.length === 3) {
 
-            fs.createWriteStream(path).write(buffer);
+            fs.createWriteStream(`${modes[setMode].path}${parseInt(index)}.png`).write(buffer);
+            //console.log(`${modes[setMode].path}${parseInt(index)}.png`)
         }
     } else {
 
-        fs.createWriteStream(path).write(buffer);
+        fs.createWriteStream(`${modes[setMode].path}${parseInt(index)}.png`).write(buffer);
+        //console.log(`${modes[setMode].path}${parseInt(index)}.png`)
     }
 }
