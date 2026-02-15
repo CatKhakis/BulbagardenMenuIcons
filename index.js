@@ -18,11 +18,18 @@ const modes = {
         'indexStart': 3,
         'indexStop': 6,
         'listStart': 0,
-    }
+    },
+    'gen-vi-icons': {
+        'path': 'generation-vi/icons/',
+        'searchCategory': 'Generation_VI_menu_sprites',
+        'indexStart': 0,
+        'indexStop': 7,
+        'listStart': 0,
+    },
 };
 
 // --- change variable here to set which mode the script is run with --- //
-const setMode = 'gen-v-icons';
+const setMode = 'gen-vi-icons';
 
 
 // Set up MediaWiki API
@@ -83,7 +90,7 @@ async function downloadImage(url) {
     if (lookup[index]) {
 
         //Lookup derived filename requires a custom path
-        //console.log(`${modes[setMode].path}${lookup[index]}.png`)
+        console.log(`${modes[setMode].path}${lookup[index]}.png`)
         fs.createWriteStream(`${modes[setMode].path}${lookup[index]}.png`).write(buffer);
 
         //Some sprites are duplicated to have the variant text and standard as a fallback
@@ -91,11 +98,11 @@ async function downloadImage(url) {
         if (index.length === 3) {
 
             fs.createWriteStream(`${modes[setMode].path}${parseInt(index)}.png`).write(buffer);
-            //console.log(`${modes[setMode].path}${parseInt(index)}.png`)
+            console.log(`${modes[setMode].path}${parseInt(index)}.png`)
         }
     } else {
 
         fs.createWriteStream(`${modes[setMode].path}${parseInt(index)}.png`).write(buffer);
-        //console.log(`${modes[setMode].path}${parseInt(index)}.png`)
+        console.log(`${modes[setMode].path}${parseInt(index)}.png`)
     }
 }
